@@ -11,7 +11,7 @@ export default function HeaderComponent({gameData}) {
         <div className="flex h-full items-center justify-center">
           <div className="px-6 text-center text-white md:px-12">
             <h1 className="mt-2 mb-16 text-5xl font-bold tracking-tight md:text-6xl xl:text-7xl">
-              {gameData.infos.name}
+              Jeu : {gameData.infos.name}
             </h1>
           </div>
         </div>
