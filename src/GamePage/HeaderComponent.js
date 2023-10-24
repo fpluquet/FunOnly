@@ -2,8 +2,8 @@ export default function HeaderComponent({gameData}) {
   return (
 
     <div className="relative bg-cover bg-no-repeat" style={{
-      "background-position": "50%",
-      "background-image": "url(" + gameData.infos.image + ")",
+      "backgroundPosition": "50%",
+      "backgroundImage": "url(" + gameData.infos.image + ")",
       "height": "500px"
     }}>
       <div
