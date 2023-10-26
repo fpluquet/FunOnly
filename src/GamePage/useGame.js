@@ -48,7 +48,7 @@ export const GameContextProvider = ({children}) => {
       setGame((lastGameValue) => ({...lastGameValue, comments: lastGameValue.comments.map(c => c.id === newComment.id ? commentFromServer : c)}))
     } catch (e) {
       // on a été trop optimiste => on retire le commentaire
-      setGame({...game, comments: game.comments.slice(0, game.comments.length - 1)})
+      setGame((lastGameValue) => ({...lastGameValue, comments: game.comments.filter(c => c.id !== newComment.id)}))
     }
   }
 
@@ -70,6 +70,10 @@ export const GameContextProvider = ({children}) => {
       setGame({...game, comments: oldGameComments})
     }
   }
+
+  const addGame = () => {
+    console.log("addGame")
+  }
   const contextValue = {
     // l'état
     game,
@@ -77,7 +81,8 @@ export const GameContextProvider = ({children}) => {
     // les actions
     loadGame,
     sendComment,
-    deleteComment
+    deleteComment,
+    addGame
   }
   return (
     <GameContext.Provider value={contextValue}>

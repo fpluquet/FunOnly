@@ -12,7 +12,7 @@ export function CommentsComponent() {
           <div class="container px-0 mx-auto sm:px-5">
 
             {comments.map((comment) => (
-              <CommentsItemComponent key={comment} comment={comment} key={comment.id}/>
+              <CommentsItemComponent key={comment.id} comment={comment}/>
             ))}
             <CommentsFormComponent/>
           </div>
