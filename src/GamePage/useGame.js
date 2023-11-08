@@ -5,8 +5,12 @@ const GameContext = createContext(null);
 
 
 export const GameContextProvider = ({children}) => {
+
+  // définition de l'état
   const [game, setGame] = useState(null)
   const [error, setError] = useState(null)
+
+  // définition des actions
   const loadGame = async (id) => {
     console.log("loadGame", id)
     setError(null)
@@ -19,6 +23,8 @@ export const GameContextProvider = ({children}) => {
       setError(e)
     }
   }
+
+  // compteur pour les ids des commentaires créés avant d'avoir l'id du serveur
   let createdCommentId = -1
   async function sendComment (text) {
     // vision optimiste
@@ -45,6 +51,7 @@ export const GameContextProvider = ({children}) => {
         body: JSON.stringify({comment: text})
       });
       const commentFromServer = await response.json();
+      // on a la réponse du serveur => on peut mettre à jour le commentaire qu'on avait créé
       setGame((lastGameValue) => ({...lastGameValue, comments: lastGameValue.comments.map(c => c.id === newComment.id ? commentFromServer : c)}))
     } catch (e) {
       // on a été trop optimiste => on retire le commentaire
@@ -74,6 +81,8 @@ export const GameContextProvider = ({children}) => {
   const addGame = () => {
     console.log("addGame")
   }
+
+  // définition du contexte
   const contextValue = {
     // l'état
     game,
@@ -84,6 +93,8 @@ export const GameContextProvider = ({children}) => {
     deleteComment,
     addGame
   }
+
+  // le corps du composant React : le provider
   return (
     <GameContext.Provider value={contextValue}>
       {children}
@@ -97,7 +108,7 @@ export function useGame() {
   return {
     // ce qui est déjà dans le contexte
     ...context,
-    // des raccourcis que l'on peut utiliser dans les composants
+    // des raccourcis que l'on peut utiliser dans les composants (qu'on aurait aussi pu mettre dans le contexte directement, c'est un choix)
     isLoaded: game != null,
     isLoading: game == null && error == null,
     isError: error != null,

@@ -3,7 +3,7 @@ import {DescriptionComponent} from "./DescriptionComponent";
 import {InfosComponent} from "./InfosComponent";
 import {YoutubeVideoComponent} from "./YoutubeVideoComponent";
 import {CommentsComponent} from "./Comments/CommentsComponent";
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import {GameContextProvider, useGame} from "./useGame";
 
@@ -31,7 +31,7 @@ function GameInnerPage() {
   console.log(game)
   return (
     <>
-      <HeaderComponent gameData={game}/>
+      <HeaderComponent/>
       <button className={"fixed shadow top-2 left-2 w-[40px] h-[40px] flex justify-center items-center bg-white rounded-full text-black"} onClick={() => navigate(-1)}>
         <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" className="bi bi-chevron-left" viewBox="0 0 16 16">
           <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
@@ -39,14 +39,14 @@ function GameInnerPage() {
       </button>
       <div className={"flex justify-space-between md:flex-row max-w-7xl mx-auto"}>
         <div class={"flex-auto"}>
-          <DescriptionComponent gameData={game}/>
+          <DescriptionComponent/>
         </div>
         <div>
-          <InfosComponent gameData={game}/>
+          <InfosComponent/>
         </div>
       </div>
-      <YoutubeVideoComponent gameData={game}/>
-      <CommentsComponent gameData={game}/>
+      <YoutubeVideoComponent/>
+      <CommentsComponent/>
       </>
 )
 }

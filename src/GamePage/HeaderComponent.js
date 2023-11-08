@@ -1,9 +1,12 @@
-export default function HeaderComponent({gameData}) {
+import {useGame} from "./useGame";
+
+export default function HeaderComponent() {
+  const {game} = useGame()
   return (
 
     <div className="relative bg-cover bg-no-repeat" style={{
       "backgroundPosition": "50%",
-      "backgroundImage": "url(" + gameData.infos.image + ")",
+      "backgroundImage": "url(" + game.infos.image + ")",
       "height": "500px"
     }}>
       <div
@@ -11,7 +14,7 @@ export default function HeaderComponent({gameData}) {
         <div className="flex h-full items-center justify-center">
           <div className="px-6 text-center text-white md:px-12">
             <h1 className="mt-2 mb-16 text-5xl font-bold tracking-tight md:text-6xl xl:text-7xl">
-              Jeu : {gameData.infos.name}
+              Jeu : {game.infos.name}
             </h1>
           </div>
         </div>
